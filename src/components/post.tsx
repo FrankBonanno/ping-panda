@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { useState } from "react"
-import { client } from "../lib/client"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import { client } from "@/lib/client";
 
 export const RecentPost = () => {
-  const [name, setName] = useState<string>("")
-  const queryClient = useQueryClient()
+  const [name, setName] = useState<string>("");
+  const queryClient = useQueryClient();
 
   const { data: recentPost, isPending: isLoadingPosts } = useQuery({
     queryKey: ["get-recent-post"],
     queryFn: async () => {
-      const res = await client.post.recent.$get()
-      return await res.json()
+      const res = await client.post.recent.$get();
+      return await res.json();
     },
-  })
+  });
 
   const createPost = useMutation({
     mutationFn: async ({ name }: { name: string }) => {
-      await client.post.create.$post({ name })
+      await client.post.create.$post({ name });
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["get-recent-post"] })
-      setName("")
+      await queryClient.invalidateQueries({ queryKey: ["get-recent-post"] });
+      setName("");
     },
-  })
+  });
 
   return (
     <div className="w-full max-w-xs">
@@ -37,8 +37,8 @@ export const RecentPost = () => {
       )}
       <form
         onSubmit={(e) => {
-          e.preventDefault()
-          createPost.mutate({ name })
+          e.preventDefault();
+          createPost.mutate({ name });
         }}
         className="flex flex-col gap-2"
       >
@@ -57,5 +57,5 @@ export const RecentPost = () => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};

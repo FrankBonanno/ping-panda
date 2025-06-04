@@ -1,11 +1,12 @@
-import MaxWidthWrapper from "@/app/components/MaxWidthWrapper";
-import Heading from "@/app/components/Heading";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import Heading from "@/components/Heading";
 import { Check } from "lucide-react";
-import ShinyButton from "@/app/components/ShinyButton";
+import ShinyButton from "@/components/ShinyButton";
 
 const RootPage = () => {
   return (
     <>
+      {/* HERO SECTION */}
       <section className="relative py-24 sm:py-32 bg-brand-25">
         <MaxWidthWrapper className="text-center">
           <div className="relative mx-auto text-center flex flex-col items-center gap-10">
