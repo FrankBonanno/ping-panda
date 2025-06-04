@@ -1,7 +1,8 @@
 import Link from "next/link";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { SignOutButton } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 const Navbar = () => {
   const user = false;
@@ -18,10 +19,56 @@ const Navbar = () => {
             {user ? (
               <>
                 <SignOutButton>
-                  <Button>Sign Out</Button>
+                  <Button size="sm" variant="ghost">
+                    Sign Out
+                  </Button>
                 </SignOutButton>
+
+                <Link
+                  href="/dashboard"
+                  className={buttonVariants({
+                    size: "sm",
+                    className: "flex items-center gap-1",
+                  })}
+                >
+                  Dashboard <ArrowRight className="ml-1.5 size-4" />
+                </Link>
               </>
-            ) : null}
+            ) : (
+              <>
+                <Link
+                  href="/pricing"
+                  className={buttonVariants({
+                    size: "sm",
+                    variant: "ghost",
+                  })}
+                >
+                  Pricing
+                </Link>
+
+                <Link
+                  href="/sign-in"
+                  className={buttonVariants({
+                    size: "sm",
+                    variant: "ghost",
+                  })}
+                >
+                  Sign In
+                </Link>
+
+                <div className="h-8 w-px bg-gray-200" />
+
+                <Link
+                  href="/sign-up"
+                  className={buttonVariants({
+                    size: "sm",
+                    className: "flex items-center gap-1.5",
+                  })}
+                >
+                  Sign Up <ArrowRight className="size-4" />
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </MaxWidthWrapper>
