@@ -24,7 +24,7 @@ const MainDashboardPage = async ({ searchParams }: PageProps) => {
     where: { externalId: auth.id },
   });
 
-  if (!user) redirect("/sign-in");
+  if (!user) return redirect("/welcome");
 
   const intent = searchParams.intent;
 
