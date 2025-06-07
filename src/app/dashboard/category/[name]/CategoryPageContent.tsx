@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -61,10 +60,6 @@ const CategoryPageContent = ({
     queryKey: ["category", category.name, "hasEvents"],
     initialData: { hasEvents: initialHasEvents },
   });
-
-  if (!pollingData.hasEvents) {
-    return <EmptyCategoryState categoryName={category.name} />;
-  }
 
   const { data, isFetching } = useQuery({
     queryKey: ["events", category.name, pagination.pageIndex, pagination.pageSize, activeTab],
@@ -221,6 +216,10 @@ const CategoryPageContent = ({
       );
     });
   };
+
+  if (!pollingData.hasEvents) {
+    return <EmptyCategoryState categoryName={category.name} />;
+  }
 
   return (
     <div className="space-y-6">
